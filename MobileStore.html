@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Mobile Store</title>
+  </head>
+  <style>
+    img{
+      margin-top:2px; 
+      width: 100px;
+      height: 150px;
+    }
+    .img1{
+      width: 200px;
+      height: 300px;
+      margin-left: 500px;
+      margin-top: -1px;
+    }
+    .img2{
+      width: 100px;
+      height: 150px;
+      margin-left: 30px;
+      margin-top: -1px;
+    }
+    img:hover{
+    background-color: white;
+  border: 2px solid blue;
+  color: blue;
+    }
+     h5{
+      margin-left: 550px;
+    }
+    .row2{
+    height: 50px;
+    width: 800px;
+    }
+    .row{
+width: 600px;
+
+}
+#ram{
+   margin-left: 275px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 150px;
+}
+#rom{
+margin-left: 265px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 150px;
+}
+#color{
+  margin-left: 250px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 150px;
+}
+.select{
+  margin-left: 250px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 40px;
+
+}
+.btn2{
+  width: 150px;
+      margin-top: 90px;
+      margin-left: 530px;
+      padding-top: 1px;
+    }
+    .btn3{
+  width: 150px;
+      margin-top: 250px;
+      margin-left: 820px;
+      padding-top: 1px;
+    }
+    .btn4{
+      background-color: grey;
+  width: 150px;
+      margin-top: 10px;
+      margin-left:820px;
+      padding-top: 1px;
+    }
+    .btn5{
+      background-color: red;
+    }
+  /* .col,.col-3,.col-4,.col-6,.col-5{
+      border:  2px solid grey;
+    }   */
+   .col-4{
+      width: 5px;
+      height: 10px;
+    }  
+    .col-5{
+      margin-top: 2px;
+      width: 10px;
+      height: 150px;
+    }
+  </style>
+  <body>
+    <div class="container">
+    <div id="show"></div>
+    <div id="show1"></div>
+  </div>
+    <script type="text/javascript">
+      
+/////////////////////////////////////////////////////////// DATA ///////////////////////////////////////////////////
+
+const mobileData = [{"image":"https://i.ibb.co/cLV4RvX/google-pixel-3.jpg","RAM":["8 GB"],"ROM":["256 GB","128 GB","64 GB"],"name":"Pixel 3","brand":"Google","colors":["Blue","Black","White"]},
+{"image":"https://i.ibb.co/160YSpk/mi-redmi-5.jpg","RAM":["6 GB","4 GB"],"ROM":["128 GB","64 GB"],"name":"Redmi 5","brand":"Xiaomi","colors":["Red","Gold","Black","White"]},
+{"image":"https://i.ibb.co/y6dk6n1/mi-redmi-y2.jpg","RAM":["3 GB"],"ROM":["32 GB"],"name":"Redmi Y2","brand":"Xiaomi","colors":["Rose Gold","Gold","Black","White"]},
+{"image":"https://i.ibb.co/McQMDF8/motorola-moto-e5-plus.jpg","RAM":["6 GB"],"ROM":["128 GB","64 GB"],"name":"Moto E5 Plus","brand":"Motorola","colors":["Grey","Black","Pink"]},
+{"image":"https://i.ibb.co/1QGFW28/nokia-6-1.jpg","RAM":["6 GB"],"ROM":["128 GB"],"name":"6.1","brand":"Nokia","colors":["Grey","Black","Blue"]},
+{"image":"https://i.ibb.co/vJbK6qM/realme-c1.jpg","RAM":["6 GB","4 GB","3 GB"],"ROM":["128 GB","64 GB"],"name":"C1","brand":"Realme","colors":["Red","Gold","Black","White","Grey"]},
+{"image":"https://i.ibb.co/F6c80H6/realme-x.jpg","RAM":["4 GB","3 GB"],"ROM":["64GB","32 GB"],"name":"X","brand":"Realme","colors":["Rose Gold","Gold","Black","White","Pink"]},
+{"image":"https://i.ibb.co/TWLNRyW/samsung-galaxy-s10-plus.jpg","RAM":["6 GB","4 GB"],"ROM":["64 GB"],"name":"Galaxy S10","brand":"Samsung","colors":["Red","Gold","White"]},
+{"image":"https://i.ibb.co/ScZsMtW/vivo-z1-pro.jpg","RAM":["8 GB","6 GB"],"ROM":["128 GB","64 GB"],"name":"Z1 Pro","brand":"Vivo","colors":["White","Deep Blue"]}];
+
+
+  const ramOptions = ["8 GB","6 GB","4 GB","3 GB","2 GB"];
+
+const ram = [
+        {display:'8GB',value:'8 GB'},
+         {display:'6GB',value:'6 GB'},
+         {display:'4GB',value:'4 GB'},
+          {display:'3GB',value:'3 GB'},
+          {display:'2GB',value:'2 GB'}];
+
+  const romOptions = ["256 GB","128 GB","64 GB","32 GB","16 GB"];
+  const rom = [
+        {display:'256GB',value:'256 GB'},
+         {display:'128GB',value:'128 GB'},
+         {display:'64GB',value:'64 GB'},
+          {display:'32GB',value:'32 GB'},
+          {display:'16GB',value:'16 GB'}];
+
+  const colors= ["Rose Gold","Gold","Black","Grey","White","Red","Pink","Blue","Deep Blue"];
+
+  const color = [
+        {display:'Rose Gold',value:'Rose Gold'},
+         {display:'Gold',value:'Gold'},
+         {display:'Black',value:'Black'},
+          {display:'Grey',value:'Grey'},
+           {display:'White',value:'White'},
+          {display:'Red',value:'Red'},
+          {display:'Pink',value:'Pink'},
+         {display:'Blue',value:'Blue'},
+          {display:'Deep Blue',value:'Deep Blue'}];
+        
+
+  const brands=["Google","Samsung","Oppo","Nokia","Xiaomi","Realme","Apple"];
+
+   let curIndex = -1;
+
+   let editIndex = -1;
+
+   let addIndex = -1;
+
+   let cart = [];
+
+   let mydata = {};
+
+   let errors = {};
+///////////////////////////////////////////////// NAV BAR FUNCTION ///////////////////////////////////////////
+
+
+  show();
+
+   function show(active=0,index){
+    let str = makeNavbar(active);
+    active===1 ? str+=showMobileTable() : str+='';
+    active===2 ? str+=showForm() : str+='';
+    active===3 ? str+=showCartTable() : str+='';
+      
+      document.getElementById('show').innerHTML = str;
+    }
+
+   function showMobile(){
+   editIndex=-1;
+    mydata={};
+    show(1);
+   }
+   function addMobile(){
+    show(2);
+
+}
+ function showCart(){
+    show(3);
+
+}
+
+///////////////////////////////////////// SHOW Mobile TABLE ///////////////////////////////////////////////////
+
+ function showMobileTable(){
+              const arr = mobileData.map((pr,index)=>{
+  
+        let {image,RAM,ROM ,name,brand,colors} = pr;
+    
+          let arr = mobileData[curIndex];
+          
+
+  let str = '<div class="row border">';
+   if(curIndex>=0){
+
+ str+='<div class="col-3">'; 
+         str+=  '<img src ='+image+' onclick=\'details('+index+')\'>';
+         str+= '</div>';
+
+         str+='<div class="col-4">';
+         str+=   'Name:'+''+name+''+'</br>';
+         str+=   'Brand:'+''+brand+''+'</br>';
+        str+=    'Colors:'+''+colors+''+'</br>';
+        str+=    'RAM:'+''+RAM+''+'</br>';
+        str+=    'ROM:'+''+ROM+''+'</br>';
+        str+=    '</div>';
+
+        str+='<div class="col-5">';
+         str+= '<img src ='+arr.image+' class="img1" >'+'</br>';
+         str+= '<h5>'+arr.brand+'</h5>'+'</br>';
+          str+='<div class="row">';
+         str+='<div class="col-4">';
+      
+    str+=madeDropdown('ram',romOptions,'Select RAM','','');
+     str+='</div>';
+     str+='<div class="col-4">';
+     str+=madeDropdown('rom',romOptions,'Select ROM','','');
+     str+= '</div>';
+     str+='<div class="col-4">';
+     str+=madeDropdown('color',colors,'Select Colors','',''); 
+
+  str+= '</div>';
+ str+= '</div>';
+ str+= '</div>';
+  str+='<div class="col-4">';
+    str+='<button class="btn3 btn-primary" onclick="addCart('+curIndex+')">Add to Cart</button>' 
+      
+         str+='<button class="btn4 btn-primary" onclick="editmobile('+curIndex+')">Edit</button>' 
+      str+= '</div>';
+        curIndex=-1;
+       }
+
+       else{
+         str+='<div class="col-3">';
+         str+=  '<img src ='+image+' onclick=\'details('+index+')\'>';
+         str+= '</div>';
+
+         str+='<div class="col-4">';
+         str+=   'Name:'+''+name+''+'</br>';
+         str+=    'Brand:'+''+brand+''+'</br>';
+         str+=   'Colors:'+''+colors+''+'</br>';
+         str+=  'RAM:'+''+RAM+''+'</br>';
+         str+=  'ROM:'+''+ROM+''+'</br>';
+         str+= '</div>';
+
+       }
+       
+       str+= '</div>';
+         return str;
+       });
+
+  let table = ''; 
+     table+= arr.join('');
+      
+       return table;
+}   
+///////////////////////////////////////////////// DETAILS ///////////////////////////////////////////////////
+
+function details(index){
+  curIndex=index
+  showMobile();
+  
+}
+////////////////////////////////////////////////// ADD CART //////////////////////////////////////////////////////
+ function addCart(index){
+  let arr = mobileData[index];
+  let colors = document.getElementById('color').value;
+  let ram = document.getElementById('ram').value;
+  let rom = document.getElementById('rom').value;
+ 
+   console.log("clr",colors);
+   console.log("ram",ram);
+   console.log("rom",rom);
+  let arr1 = { image:arr.image,name:arr.name,brand:arr.brand,color:colors,RAM:ram,ROM:rom};
+
+if(colors=="" || ram=="" || rom==""){
+  alert('Choose all the options before adding to cart');
+}
+  else{
+  cart.push(arr1);
+
+alert('Successfully added to cart')
+showCart();
+}
+  console.log("cart",cart);
+  
+ }
+ /////////////////////////////////////////// CART TABLE ///////////////////////////////////////////////////////
+
+ function showCartTable(){
+  const arr = cart.map((pr,index)=>{
+  
+        let {image,RAM,ROM ,name,brand,color} = pr;
+    
+        let str = '<div class="row border">';
+        str+='<div class="col-6">';
+         str+=  '<img src ='+image+' class="img2" onclick=\'details('+index+')\'>';
+         str+= '</div>';
+
+         str+='<div class="col-6">';
+         str+=   ''+name+''+'from'+''+brand+''+'</br>';
+         str+=   'Color:'+''+color+''
+         str+=  'RAM:'+''+RAM+''
+         str+=  'ROM:'+''+ROM+''
+         str+='<button class="btn5 btn-primary" onclick="removeFromcart('+index+')">Remove from Cart</button>' 
+         str+= '</div>';
+         str+= '</div>';
+         return str;
+       });
+
+              let table = ''; 
+             table+= arr.join('');
+      
+       return table;
+
+ }
+ ///////////////////////////////////////////// REMOVE FROM CART ////////////////////////////////////////////////////
+
+ function removeFromcart(index){
+     cart.splice(index,1);
+     showCart();
+ }
+////////////////////////////////////////////// EDIT MOBILE ////////////////////////////////////////////////////////////
+ function editmobile(index){
+  console.log("in",index);
+editIndex=index;
+  mydata = mobileData[index];
+  addMobile();
+}
+ ///////////////////////////////////////////////////// SHOW FORM ///////////////////////////////////////////////
+ function showForm(){
+     let {image='',name ='',brand='',RAM,ROM,colors} = mydata;
+  
+ let title = editIndex>=0 ? 'Edit Mobile Details' : 'Add a Mobile';
+
+ let str = '<h3 class="text-center">'+title+'</h3>'
+ str += makeTextField('name','Product Name','Enter product name',name,errors.name);
+  str+= makeTextField('image','Product Image','Enter URL of product image',image,errors.img);
+  str+=madeDropdown('brand',brands,'Select Brand',brand,errors.brand);
+  str+=makeCheckbox(ram,'Choose RAM options','ra',RAM,errors.ram)+'</br>';
+  str+=makeCheckbox(rom,'Choose ROM options','ro',ROM,errors.rom)+'</br>';
+  str+=makeCheckbox(color,'Choose Color options','clr',colors,errors.color)+'</br>';
+  
+  str+='<button class="btn btn-primary" onclick="submitdata()">Add Product</button>';
+  return str;
+
+ }
+ ///////////////////////////////////////////////////////// SUBMIT DATA ////////////////////////////////////
+
+ function submitdata(){
+  let name1 = document.getElementById('name').value;
+    let image1 = document.getElementById('image').value;
+    let brand1 = document.getElementById('brand').value;
+    let ram1 = document.getElementsByName('ra');
+    let rom1 = document.getElementsByName('ro');
+    let color1 = document.getElementsByName('clr');
+    
+    let ram2 =[];
+    let rom2 =[];
+    let color2 =[];
+
+
+  
+console.log("img",image1);
+console.log("b",brand1);
+
+
+  for(let i=0;i<ram1.length;i++){
+      if(ram1[i].checked){
+      
+        ram2.push(ram1[i].value);
+      }
+      console.log("ram2",ram2);
+    }
+    for(let i=0;i<rom1.length;i++){
+      if(rom1[i].checked){
+      
+        rom2.push(rom1[i].value);
+      }
+      console.log("ram2",rom2);
+    }
+    for(let i=0;i<color1.length;i++){
+      if(color1[i].checked){
+      
+        color2.push(color1[i].value);
+      }
+      console.log("color2",color2);
+    }
+     
+     
+    
+
+    
+    let pr = {image:image1,name:name1,brand:brand1,RAM:ram2,ROM:rom2,colors:color2};
+    console.log("pr",pr);
+    if(validate(pr)){
+    editIndex>=0 ? mobileData[editIndex]=pr : mobileData.push(pr);
+ // pro.push(prodName);
+   // data.push(pr);
+    showMobile();
+  }
+  else{
+    addIndex=0;
+    mydata = pr;
+    console.log("prelse",pr);
+    addMobile();  
+   } 
+ }
+
+ /////////////////////////////////////////////////// VALIDATE ///////////////////////////////////////////////
+
+function validate(pr){
+  
+  // empty string = there is no error, or it should have the error message
+        errors.name = pr.name ? '':'Name is mandatory';
+     errors.img = pr.image ? '':'Image URL is mandatory';
+     errors.brand = pr.brand ? '' : 'Select brand is mandatory';
+     errors.ram = pr.RAM.length>=1 ? '' : 'Atleast one  RAM options should be checked';
+     errors.rom = pr.ROM.length>=1 ? '' : 'Atleast one  ROM options should be checked';
+     errors.color = pr.colors.length>=2 ? '' : 'Atleast Two  Color options should be checked';
+    
+     console.log(errors);
+     return !(errors.img ||errors.name||errors.brand || errors.ram || errors.rom || errors.color);
+  }
+
+
+ ////////////////////////////////////////////////MAKE TEXT FIELD//////////////////////////////////////////////
+
+function makeTextField(id,label,placeholder='',value='',err=''){
+  let str = '<div class="form-group">';
+  str+='<label>'+label+'</label>';
+  str+='<input type ="text" class="form-control" id="'+id+'" placeholder="'+placeholder+'" value="'+value+'">';
+  str+= err ? '<span class="text-danger">'+err+'</span>' : '';
+  str+='</div>';
+  return str;
+}
+     
+//////////////////////////////////////////////// MAKE CB //////////////////////////////////////////////////////
+
+function makeCheckbox(arr,label,name,checkvalue='',err=''){
+
+console.log("cv",checkvalue);
+console.log("arr",arr);
+let c ='';
+  const arr1 =  arr.map(opt => {
+        let {display,value} = opt;
+
+
+       
+     if(editIndex==-1){
+       c ='';
+       let  str = '<div class="form-check form-check-inline">';
+        str+= '<input class="form-check-input" type="checkbox" name="'+name+'" value="'+value+'" '+c+'>';
+        str+= '<label class="form-check-label">'+display+'</label>';
+        str+= '</div>';
+        return str;
+    }
+    else if(editIndex>=0){
+  let arr3 = checkvalue.find(function(ele1){
+    for(let i=0;i<ele1.length;i++){
+    console.log("ele1",ele1);
+    console.log("value",value);
+       if(ele1==value)
+  
+        return ele1;
+}
+
+});
+
+
+   for(let i=0;i<checkvalue.length;i++){
+    console.log("arr3",arr3);
+        c =  arr3 ? 'checked' :'';
+}
+        console.log("c",c);
+        let  str = '<div class="form-check form-check-inline">';
+        str+= '<input class="form-check-input" type="checkbox" name="'+name+'" value="'+value+'" '+c+'>';
+        str+= '<label class="form-check-label">'+display+'</label>';
+        str+= '</div>';
+        return str;
+}
+
+      });
+     
+
+    let s1 ='<div class="form-check form-check-inline">';
+    s1+= '<label class="form-check-label">'+label+'</label>';
+    s1+='</div>';
+    s1+= arr1.join('');
+    s1+= err ? '<br/><span class="text-danger">'+err+'</span>' : '';
+    return s1;
+
+    }   
+
+///////////////////////////////////////////////// MAKE DD /////////////////////////////////////////////////////
+
+ function madeDropdown(id,options,header,selValue='',err=''){
+  console.log("opt",options);
+   const arr1 = options.map(opt=>{
+        let selected = opt ===selValue ? 'selected' : '';
+        return '<option '+selected+'>'+opt+'</option>';
+      });
+   let s1 = '<div class="form-group">';
+   s1+='<select id ="'+id+'" class="form-control">';
+   let selectedHeader = selValue ? '' : 'selected';
+   s1+='<option value="" disabled '+selectedHeader+'>'+header+'</option>';
+   s1+=arr1.join('');
+   s1+='</select>';
+   s1+= err ? '<span class="text-danger">'+err+'</span>' : '';
+   s1+='</div>';
+   return s1;
+}
+////////////////////////////////////////////////MAKE NAV BAR//////////////////////////////////////////////  
+ 
+    function makeNavbar(active=0){
+  // 1:show products 2: add a product
+  let str ='<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+  str+= '<a class="navbar-brand" href="#">MobileStore</a>';
+  str+='<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">';
+  str+='<span class="navbar-toggler-icon"></spna>';
+  str+= '</button>';
+  str+= '<div class="collapse navbar-collapse" id="navbarNavDropdown">';
+  str+= '<ul class="navbar-nav">';
+  let active1 = active===1 ? 'active':'';
+  let active2 = active===2 ? 'active':'';
+  let active3 = active===3 ? 'active':'';
+
+  
+  str+= '<li class="nav-item '+active1+'">';
+  
+  str+= '<a class="nav-link" onclick="showMobile()">Mobiles</a>';
+  str+= '</li>';
+  str+= '<li class="nav-item '+active2+'">';
+  str+= '<a class="nav-link" onclick="addMobile()">Add a Mobile</a>';
+  str+= '</li>';
+   str+= '<li class="nav-item '+active3+'">';
+  str+= '<a class="nav-link" onclick="showCart()">Cart</a>';
+  str+= '</li>';
+ 
+  
+  str+='</ul>';
+  str+='</div>';
+  str+='</nav>';
+  return str;
+}
+
+
+
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
